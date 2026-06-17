@@ -97,6 +97,22 @@ O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggr
 | Revocação | 0.7358 | 0.5822 |
 | F1-Score | **0.5170** | 0.4994 |
 
+### Gráfico 1 — Comparação de Métricas
+
+![Comparação de Métricas](graficos resultados/01_comparacao_metricas.png)
+
+### Gráfico 2 — Matrizes de Confusão
+
+![Matrizes de Confusão](graficos resultados/02_matrizes_confusao.png)
+
+### Gráfico 3 — Importância de Atributos (Random Forest)
+
+![Importância de Features](graficos resultados/03_importancia_features.png)
+
+### Gráfico 4 — Distribuição de Churn e F1-Score por Modelo
+
+![Distribuição e F1](graficos resultados/04_distribuicao_e_f1.png)
+
 
 
 ## Comparação dos Resultados
