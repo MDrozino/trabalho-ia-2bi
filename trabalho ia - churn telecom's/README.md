@@ -2,7 +2,7 @@
 
 ## Previsão de Churn de Clientes de Telecomunicações
 
----
+
 
 ## Integrantes
 
@@ -12,7 +12,7 @@
 - Igor Costa  - RA: 23215764-2
 
 
----
+
 
 ## Resumo do Projeto
 
@@ -28,9 +28,9 @@ Trata-se de um problema de **classificação binária**.
 
 ### Hipótese
 
-Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança mensal e pouco tempo de relacionamento com a empresa têm maior probabilidade de cancelar o serviço. Além disso, esperamos que o Random Forest, por ser um método de ensemble baseado em Bagging (Parte 2 da disciplina), apresente desempenho superior à Árvore de Decisão simples (Parte 1), especialmente nas métricas de F1-Score e Revocação.
+Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança mensal e pouco tempo de relacionamento com a empresa têm maior probabilidade de cancelar o serviço. Além disso, esperamos que o Random Forest, por ser um método baseado em Bagging (2 Bimestre), apresente desempenho superior à Árvore de Decisão simples (1 Bimestre), especialmente nas métricas de F1-Score e Revocação.
 
----
+
 
 ## Dataset
 
@@ -61,11 +61,11 @@ Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança men
 4. Divisão treino/teste: **80% treino / 20% teste** com estratificação por classe
 5. Uso de `class_weight='balanced'` nos modelos para lidar com o desbalanceamento
 
----
+
 
 ## Métodos de IA Utilizados
 
-### Parte 1 — Árvore de Decisão (`DecisionTreeClassifier`)
+### 1 Bimestre — Árvore de Decisão 
 
 A Árvore de Decisão é um método supervisionado que constrói uma estrutura hierárquica de regras de decisão. A partir dos atributos do dataset, o modelo aprende a dividir os dados em subconjuntos cada vez mais homogêneos com relação à variável alvo, por meio de critérios como Gini ou Entropia.
 
@@ -74,9 +74,9 @@ A Árvore de Decisão é um método supervisionado que constrói uma estrutura h
 - `min_samples_leaf=20` — mínimo de amostras por folha
 - `class_weight='balanced'` — peso proporcional inverso à frequência de classe
 
-### Parte 2 — Random Forest (`RandomForestClassifier`)
+###2 Bimestre — Random Forest 
 
-O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggregating): treina múltiplas árvores de decisão em subconjuntos aleatórios dos dados (com reposição) e combina suas predições por votação majoritária. Por usar aleatoriedade também na seleção de atributos em cada split, reduz a variância e melhora a generalização em relação a uma única árvore.
+O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggregating): treina múltiplas árvores de decisão em subconjuntos aleatórios dos dados e combina suas predições por votação majoritária. Por usar aleatoriedade também na seleção de atributos em cada split, reduz a variância e melhora a generalização em relação a uma única árvore.
 
 **Hiperparâmetros utilizados:**
 - `n_estimators=200` — 200 árvores na floresta
@@ -84,7 +84,7 @@ O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggr
 - `min_samples_leaf=5` — mínimo de amostras por folha
 - `class_weight='balanced'` — balanceamento de classes
 
----
+
 
 ## Avaliação dos Modelos
 
@@ -97,23 +97,7 @@ O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggr
 | Revocação | 0.7358 | 0.5822 |
 | F1-Score | **0.5170** | 0.4994 |
 
-### Gráfico 1 — Comparação de Métricas
 
-![Comparação de Métricas](graficos/01_comparacao_metricas.png)
-
-### Gráfico 2 — Matrizes de Confusão
-
-![Matrizes de Confusão](graficos/02_matrizes_confusao.png)
-
-### Gráfico 3 — Importância de Atributos (Random Forest)
-
-![Importância de Features](graficos/03_importancia_features.png)
-
-### Gráfico 4 — Distribuição de Churn e F1-Score por Modelo
-
-![Distribuição e F1](graficos/04_distribuicao_e_f1.png)
-
----
 
 ## Comparação dos Resultados
 
@@ -131,7 +115,7 @@ Este trabalho demonstrou a aplicação prática de dois métodos de Inteligênci
 
 O processo completo de desenvolvimento de uma solução baseada em IA foi exercitado: definição do problema, preparação dos dados, treinamento, avaliação com métricas e gráficos, comparação entre modelos e conclusão analítica.
 
-Como trabalho futuro, poderíamos explorar técnicas de reamostragem (SMOTE), ajuste de hiperparâmetros por GridSearch e outros métodos da Parte 2 como AdaBoost ou Stacking para potencialmente melhorar os resultados.
+Como trabalho futuro, poderíamos explorar técnicas de reamostragem , ajuste de hiperparâmetros por  e outros métodos do 2 bimestre como AdaBoost ou Stacking para potencialmente melhorar os resultados.
 
 ---
 
