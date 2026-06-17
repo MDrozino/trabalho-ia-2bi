@@ -28,8 +28,7 @@ Trata-se de um problema de **classificação binária**.
 
 ### Hipótese
 
-Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança mensal e pouco tempo de relacionamento com a empresa têm maior probabilidade de cancelar o serviço. Além disso, esperamos que o Random Forest, por ser um método baseado em Bagging (2 Bimestre), apresente desempenho superior à Árvore de Decisão simples (1 Bimestre), especialmente nas métricas de F1-Score e Revocação.
-
+Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança mensal e pouco tempo de relacionamento com a empresa têm maior probabilidade de cancelar o serviço. Além disso, esperamos que o Random Forest, por ser um método de ensemble baseado em Bagging , apresente desempenho superior à Árvore de Decisão simples , especialmente nas métricas de F1-Score e Revocação.
 
 
 ## Dataset
@@ -65,7 +64,7 @@ Nossa hipótese é que clientes com contrato mensal, alto valor de cobrança men
 
 ## Métodos de IA Utilizados
 
-### 1 Bimestre — Árvore de Decisão 
+### Parte 1 — Árvore de Decisão (`DecisionTreeClassifier`)
 
 A Árvore de Decisão é um método supervisionado que constrói uma estrutura hierárquica de regras de decisão. A partir dos atributos do dataset, o modelo aprende a dividir os dados em subconjuntos cada vez mais homogêneos com relação à variável alvo, por meio de critérios como Gini ou Entropia.
 
@@ -74,9 +73,9 @@ A Árvore de Decisão é um método supervisionado que constrói uma estrutura h
 - `min_samples_leaf=20` — mínimo de amostras por folha
 - `class_weight='balanced'` — peso proporcional inverso à frequência de classe
 
-###2 Bimestre — Random Forest 
+### Parte 2 — Random Forest (`RandomForestClassifier`)
 
-O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggregating): treina múltiplas árvores de decisão em subconjuntos aleatórios dos dados e combina suas predições por votação majoritária. Por usar aleatoriedade também na seleção de atributos em cada split, reduz a variância e melhora a generalização em relação a uma única árvore.
+O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggregating): treina múltiplas árvores de decisão em subconjuntos aleatórios dos dados  e combina suas predições por votação majoritária. Por usar aleatoriedade também na seleção de atributos em cada split, reduz a variância e melhora a generalização em relação a uma única árvore.
 
 **Hiperparâmetros utilizados:**
 - `n_estimators=200` — 200 árvores na floresta
@@ -99,21 +98,19 @@ O Random Forest é um método de ensemble baseado em **Bagging** (Bootstrap Aggr
 
 ### Gráfico 1 — Comparação de Métricas
 
-![Comparação de Métricas](graficos resultados/01_comparacao_metricas.png)
+![Comparação de Métricas](graficos_resultados/01_comparacao_metricas.png)
 
 ### Gráfico 2 — Matrizes de Confusão
 
-![Matrizes de Confusão](graficos resultados/02_matrizes_confusao.png)
+![Matrizes de Confusão](graficos_resultados/02_matrizes_confusao.png)
 
 ### Gráfico 3 — Importância de Atributos (Random Forest)
 
-![Importância de Features](graficos resultados/03_importancia_features.png)
+![Importância de Features](graficos_resultados/03_importancia_features.png)
 
 ### Gráfico 4 — Distribuição de Churn e F1-Score por Modelo
 
-![Distribuição e F1](graficos resultados/04_distribuicao_e_f1.png)
-
-
+![Distribuição e F1](graficos_resultados/04_distribuicao_e_f1.png)
 
 ## Comparação dos Resultados
 
@@ -131,7 +128,7 @@ Este trabalho demonstrou a aplicação prática de dois métodos de Inteligênci
 
 O processo completo de desenvolvimento de uma solução baseada em IA foi exercitado: definição do problema, preparação dos dados, treinamento, avaliação com métricas e gráficos, comparação entre modelos e conclusão analítica.
 
-Como trabalho futuro, poderíamos explorar técnicas de reamostragem , ajuste de hiperparâmetros por  e outros métodos do 2 bimestre como AdaBoost ou Stacking para potencialmente melhorar os resultados.
+Como trabalho futuro, poderíamos explorar técnicas de reamostragem , ajuste de hiperparâmetros por e outros métodos do 2 bimestre como AdaBoost ou Stacking para potencialmente melhorar os resultados.
 
 ---
 
@@ -149,21 +146,21 @@ pip install pandas scikit-learn matplotlib seaborn joblib
 python algoritmo-ia.py
 ```
 
-Os gráficos serão salvos na pasta `graficos resultados/` e os modelos treinados na pasta `modelos treinados/`.
+Os gráficos serão salvos na pasta `graficos_resultados/` e os modelos treinados na pasta `modelos_treinados/`.
 
 ---
 
 ## Modelo Treinado
 
-Os modelos treinados estão disponíveis na pasta `modelos treinados/`:
-- `modelos treinados/arvore_decisao.pkl` — Árvore de Decisão treinada
-- `modelos treinados/random_forest.pkl` — Random Forest treinado
+Os modelos treinados estão disponíveis na pasta `modelos_treinados/`:
+- `modelos_treinados/arvore_decisao.pkl` — Árvore de Decisão treinada
+- `modelos_treinados/random_forest.pkl` — Random Forest treinado
 
 Para carregar e usar um modelo:
 
 ```python
 import joblib
-modelo = joblib.load("modelos treinados/random_forest.pkl")
+modelo = joblib.load("modelos_treinados/random_forest.pkl")
 predicao = modelo.predict(X_novo)
 ```
 

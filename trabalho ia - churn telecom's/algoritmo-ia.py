@@ -28,8 +28,8 @@ import joblib
 
 # Configurações gerais 
 SEED = 42 # variável de aleatoriedade (bagging), é definida para ser a mesma para os dois treinos
-os.makedirs("graficos resultados", exist_ok=True)
-os.makedirs("modelos treinados", exist_ok=True)
+os.makedirs("graficos_resultados", exist_ok=True)
+os.makedirs("modelos_treinados", exist_ok=True)
 
 #  1. ---- CARREGAMENTO E PREPARAÇÃO DOS DADOS 
 
@@ -87,7 +87,7 @@ print(f"   Precisão : {prec_dt:.4f}")
 print(f"   Revocação: {rec_dt:.4f}")
 print(f"   F1-Score : {f1_dt:.4f}")
 
-joblib.dump(dt, "modelos treinados/arvore_decisao.pkl")
+joblib.dump(dt, "modelos_treinados/arvore_decisao.pkl")
 
 
 # ---- 3. TREINAMENTO - RANDOM FOREST - BAGGING (Parte 2) 
@@ -112,7 +112,7 @@ print(f"   Precisão : {prec_rf:.4f}")
 print(f"   Revocação: {rec_rf:.4f}")
 print(f"   F1-Score : {f1_rf:.4f}")
 
-joblib.dump(rf, "modelos treinados/random_forest.pkl")
+joblib.dump(rf, "modelos_treinados/random_forest.pkl")
 
 
 # ---- 4. GRÁFICOS DE AVALIAÇÃO 
@@ -147,9 +147,9 @@ ax.spines[["top", "right"]].set_visible(False)
 ax.yaxis.grid(True, alpha=0.3)
 ax.set_axisbelow(True)
 plt.tight_layout()
-plt.savefig("graficos resultados/01_comparacao_metricas.png", dpi=150)
+plt.savefig("graficos_resultados/01_comparacao_metricas.png", dpi=150)
 plt.close()
-print("    graficos resultados/01_comparacao_metricas.png")
+print("    graficos_resultados/01_comparacao_metricas.png")
 
 # --- Gráfico 2: Matrizes de Confusão ---
 fig, axes = plt.subplots(1, 2, figsize=(11, 4))
@@ -170,9 +170,9 @@ for ax, y_pred, title in zip(
 
 plt.suptitle("Matrizes de Confusão", fontsize=13, fontweight="bold", y=1.02)
 plt.tight_layout()
-plt.savefig("graficos resultados/02_matrizes_confusao.png", dpi=150, bbox_inches="tight")
+plt.savefig("graficos_resultados/02_matrizes_confusao.png", dpi=150, bbox_inches="tight")
 plt.close()
-print("    graficos resultados/02_matrizes_confusao.png")
+print("    graficos_resultados/02_matrizes_confusao.png")
 
 # --- Gráfico 3: Importância de Features ---
 feat_imp  = pd.Series(rf.feature_importances_, index=X.columns)
@@ -187,9 +187,9 @@ ax.spines[["top", "right"]].set_visible(False)
 ax.xaxis.grid(True, alpha=0.3)
 ax.set_axisbelow(True)
 plt.tight_layout()
-plt.savefig("graficos resultados/03_importancia_features.png", dpi=150)
+plt.savefig("graficos_resultados/03_importancia_features.png", dpi=150)
 plt.close()
-print("    graficos resultados/03_importancia_features.png")
+print("    graficos_resultados/03_importancia_features.png")
 
 # --- Gráfico 4: Distribuição + F1 ---
 fig, axes = plt.subplots(1, 2, figsize=(10, 4))
@@ -215,9 +215,9 @@ axes[1].yaxis.grid(True, alpha=0.3)
 axes[1].set_axisbelow(True)
 
 plt.tight_layout()
-plt.savefig("graficos resultados/04_distribuicao_e_f1.png", dpi=150)
+plt.savefig("graficos_resultados/04_distribuicao_e_f1.png", dpi=150)
 plt.close()
-print("    graficos resultados/04_distribuicao_e_f1.png")
+print("    graficos_resultados/04_distribuicao_e_f1.png")
 
 # ---- 5. RELATÓRIO FINAL 
 
@@ -230,6 +230,6 @@ for m, v1, v2 in zip(metricas, vals_dt, vals_rf):
 print("---------------------------------------------------------------------------------" )
 vencedor = "Random Forest" if f1_rf > f1_dt else "Árvore de Decisão"
 print(f"\n  Melhor modelo pelo F1-Score: {vencedor}")
-print(f"  Todos os gráficos salvos em: graficos resultados/")
-print(f"  Modelos salvos em: modelos treinados/")
+print(f"  Todos os gráficos salvos em: graficos_resultados/")
+print(f"  Modelos salvos em: modelos_treinados/")
 print("===============================================" )
